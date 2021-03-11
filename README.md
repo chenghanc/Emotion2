@@ -35,24 +35,24 @@ This project aims to develop a CNN-based model to recognize Facial Expression of
         w.writerow(['subDirectory_filePath', 'face_x', 'face_y', 'face_width', 'face_height', 'facial_landmarks', 'expression', 'valence', 'arousal'])
         w.writerows(data)
     ```
-    - Comment lines 71&72 [link](https://github.com/chenghanc/Emotion/blob/main/process_csv.py#L71-L72) if we only need path of filename and expression (recommended when collecting cropped images only)
-    - Resize the images to **48 x 48** [link](https://github.com/chenghanc/Emotion/blob/main/process_csv.py#L80) when collecting cropped images
+    - Comment lines 71&72 [link](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py#L71-L72) if we only need path of filename and expression (recommended when collecting cropped images only)
+    - Resize the images to **48 x 48** [link](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py#L80) when collecting cropped images
 
-- Run [process_csv.py](https://github.com/chenghanc/Emotion/blob/main/process_csv.py) **and collect cropped images**
+- Run [process_csv.py](https://github.com/chenghanc/Emotion3/blob/main/process_csv.py) **and collect cropped images**
     - Rename the folder `done` to `base`
     - Copy the file for backup `affectnet/training.txt` (`validation.txt`)
-- Run [process_csv_pixels.py](https://github.com/chenghanc/Emotion/blob/main/process_csv_pixels.py) **and generate pixel values of images** in `affectnet/training.txt` (`validation.txt`)
+- Run [process_csv_pixels.py](https://github.com/chenghanc/Emotion2/blob/main/process_csv_pixels.py) **and generate pixel values of images** in `affectnet/training.txt` (`validation.txt`)
     - Same as above **`affectnet/training.csv` (`validation.csv`)**
     - Same as above **`affectnet/training.txt` (`validation.txt`)**
     - Rename the file `affectnet/training.txt` (`validation.txt`) to `affectnet/pixels.csv`
 
-- Run [process_csv_save.py](https://github.com/chenghanc/Emotion/blob/main/process_csv_save.py) and save training csv file
+- Run [process_csv_save.py](https://github.com/chenghanc/Emotion2/blob/main/process_csv_save.py) and save training csv file
     - We will get two `fer2021.csv` files for training/validation, which we rename `fer2021-affectnet-train.csv` and `fer2021-affectnet-valid.csv`, respectively
     - Perform `cat fer2021-affectnet-train.csv fer2021-affectnet-valid.csv fer2013.csv > fer2021.csv`
 
 ## Visualize images
 
-- We can visualize the images by running [preprocess_csv_affectnet.py](https://github.com/chenghanc/Emotion/blob/main/preprocess_csv_affectnet.py), provided that input files are properly selected
+- We can visualize the images by running [preprocess_csv_affectnet.py](https://github.com/chenghanc/Emotion2/blob/main/preprocess_csv_affectnet.py), provided that input files are properly selected
 
 ## Train and Evaluate model
 
@@ -60,7 +60,7 @@ This project aims to develop a CNN-based model to recognize Facial Expression of
 - Pre-processing **AffectNet** + **Fer2013** dataset
     - Put **fer2021.csv** in the data folder and change the filename file = 'data/fer2021.csv' in preprocess_fer2013.py, then
     - python preprocess_fer2013.py
-    - If everything works fine, it will show 
+    - If everything works fine, it will show
     ```
     (316110, 2304)
     (3589, 2304)
