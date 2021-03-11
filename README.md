@@ -38,7 +38,7 @@ This project aims to develop a CNN-based model to recognize Facial Expression of
     - Comment lines 71&72 [link](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py#L71-L72) if we only need path of filename and expression (recommended when collecting cropped images only)
     - Resize the images to **48 x 48** [link](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py#L80) when collecting cropped images
 
-- Run [process_csv.py](https://github.com/chenghanc/Emotion3/blob/main/process_csv.py) **and collect cropped images**
+- Run [process_csv.py](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py) **and collect cropped images**
     - Rename the folder `done` to `base`
     - Copy the file for backup `affectnet/training.txt` (`validation.txt`)
 - Run [process_csv_pixels.py](https://github.com/chenghanc/Emotion2/blob/main/process_csv_pixels.py) **and generate pixel values of images** in `affectnet/training.txt` (`validation.txt`)
