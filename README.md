@@ -47,8 +47,8 @@ This project aims to develop a CNN-based model to recognize Facial Expression of
     - Rename the file `affectnet/training.txt` (`validation.txt`) to `affectnet/pixels.csv`
 
 - Run [process_csv_save.py](https://github.com/chenghanc/Emotion2/blob/main/process_csv_save.py) and save training csv file
-    - We will get two `fer2021.csv` files for training/validation, which we rename `fer2021-affectnet-train.csv` and `fer2021-affectnet-valid.csv`, respectively
-    - Perform `cat fer2021-affectnet-train.csv fer2021-affectnet-valid.csv fer2013.csv > fer2021.csv`
+    - We will get two `fer2021.csv` files for training/validation, which we shall rename to `fer2021-affectnet-train.csv` and `fer2021-affectnet-valid.csv`, respectively
+    - Perform `cat fer2021-affectnet-train.csv fer2021-affectnet-valid.csv fer2013.csv > fer2021.csv` and we will get **AffectNet** + **Fer2013** training dataset **fer2021.csv**
 
 ## Visualize images
 
