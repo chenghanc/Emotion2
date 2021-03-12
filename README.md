@@ -49,6 +49,7 @@ This project aims to develop a CNN-based model to recognize Facial Expression of
 - Run [process_csv_save.py](https://github.com/chenghanc/Emotion2/blob/main/process_csv_save.py) and save training csv file
     - We will get two `fer2021.csv` files for training/validation, which we shall rename to `fer2021-affectnet-train.csv` and `fer2021-affectnet-valid.csv`, respectively
     - Perform `cat fer2021-affectnet-train.csv fer2021-affectnet-valid.csv fer2013.csv > fer2021.csv` and we will get **AffectNet** + **Fer2013** training dataset **fer2021.csv**
+    - Perform `cat fer2021-affectnet-train.csv fer2021-affectnet-valid-PublicTest.csv fer2021-affectnet-valid-PrivateTest.csv > affectnet.csv` and we will get **AffectNet** training dataset **affectnet.csv**
 
 ## Visualize images
 
@@ -67,6 +68,8 @@ This project aims to develop a CNN-based model to recognize Facial Expression of
     (3589, 2304)
     Save data finish!!!
     ```
+    - The training dataset consists of 316,110 examples. The public test dataset consists of 3,589 examples. The private test dataset consists of another 3,589 examples
+    - Similarly for **AffectNet** training dataset **affectnet.csv**. The training dataset consists of 283,901 examples. The public test dataset (= private test dataset) consists of 3,500 examples
 - Train and Evaluate model
     - Modify line 28 in fer.py **(28709 to 316110)**, then
     - python mainpro_FER.py --model VGG19 --bs 64 --lr 0.01
