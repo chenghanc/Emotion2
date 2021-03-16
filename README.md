@@ -73,12 +73,29 @@ This project aims to develop a CNN-based model to recognize Facial Expression of
 - Train and Evaluate model
     - Modify line 28 in fer.py **(28709 to 316110)**, then
     - python mainpro_FER.py --model VGG19 --bs 64 --lr 0.01
+
+<details><summary><b>CLICK ME</b> - Settings of parameters used for training</summary>
+
+| Dataset          | Parameters                   | Values                            |
+|------------------|:----------------------------:|:---------------------------------:|
+| AffectNet        | Size of images used          | 48 x 48                           |
+|                  | Optimizer                    | Stochastic Gradient Descent (SGD) |
+|                  | Number of epochs             | 200 - 250                         |
+|                  | Batch size                   | 64                                |
+|                  | Learning rate                | 0.009 (0.01)                      |
+|                  | Momentum                     | 0.9                               |
+|                  | Learning decay               | 4e-5 (5e-4)                       |
+|                  | Start of learning rate decay | After 60  epochs                  |
+|                  | Continues decaying           | Every 5   epochs                  |
+
+</details>
+
 - Plot confusion matrix
     - python plot_fer2013_confusion_matrix.py --model VGG19 --split PrivateTest
     - python plot_fer2013_confusion_matrix.py --model VGG19 --split PublicTest
 - Visualize for a test image
     - python visualize.py
-- **Note:** Before training the network, the faces can also be cropped and resized to **256 x 256** pixels. Just repeat the steps in **How to use the scripts** and modify the resized images to **256 x 256** [link](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py#L80)
+- **Note:** Before training the network, the faces can also be cropped and resized to **96 x 96** pixels. Just repeat the steps in **How to use the scripts** and modify the resized images to **96 x 96** [link](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py#L80)
 
 ---
 
