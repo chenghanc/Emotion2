@@ -5,10 +5,6 @@ from os import getcwd
 
 # AffectNet - YOLO Format
 
-"""
-Start of:
-Loading original annotations into Pandas dataFrame
-"""
 '''
 fer2021_data = pd.read_csv('affectnet/test.csv',
                   names=['subDirectory_filePath', 'face_x', 'face_y', 'face_width',
@@ -54,17 +50,10 @@ r2
 r = r2.loc[r2['CategoryID'] < 7]
 r
 
-"""
-Setting up full path to directory
-"""
-
-# Getting the current directory
 os.getcwd()
 
-full_path_to_dataset = '/home/nechk/NECHK-Results/helmet2/emotion/Emotion2/affectnet/test'
+full_path_to_dataset = '/Users/chung/NECHK-Results/github/Emotion2/affectnet/test'
 
-# Changing the current directory
-# to one with images
 os.chdir(full_path_to_dataset)
 
 r.head()
@@ -102,16 +91,13 @@ for root, subdirectories, files in os.walk('.'):
             print("Height & Width", (h,w))
             print("Filenames:    ", file)
 
-            # Slicing only name of the file without extension
             image_name = file[:-4]
             print("Image Names:  ", image_name + "\n")
 
             # Create separate dataFrame
             sub_r = r.loc[r['ImageID'] == file].copy()
-            #print(sub_r.head(1))
 
             # Normalizing calculated bounding boxes coordinates
-            # according to the real image width and height
             sub_r['center x'] = sub_r['center x'] / w
             sub_r['center y'] = sub_r['center y'] / h
             sub_r['width'] = sub_r['width'] / w
@@ -123,23 +109,16 @@ for root, subdirectories, files in os.walk('.'):
                                            'center y',
                                            'width',
                                            'height']].copy()
-            #print(resulted_frame.head(1))
 
-            # Checking if there is no any annotations for current image
             if resulted_frame.isnull().values.all():
-                # Skipping this image
                 continue
 
-            # Preparing path where to save txt file
             path_to_save = full_path_to_dataset + '/' + image_name + '.txt'
 
-            # Saving resulted Pandas dataFrame into txt file
             resulted_frame.to_csv(path_to_save, header=False, index=False, sep=' ')
 
-            # Preparing path where to save jpg image
             path_to_save = full_path_to_dataset + '/' + image_name + '.jpg'
 
-            # Saving image in jpg format by OpenCV function
             cv2.imwrite(path_to_save, image)
 
 print(num)
