@@ -58,15 +58,6 @@ os.chdir(full_path_to_dataset)
 
 r.head()
 
-'''
-for root, subdirectories, files in os.walk('.'):
-    for subdirectory in subdirectories:
-        print(os.path.join(root, subdirectory))
-    for file in files:
-        num += 1
-        print(os.path.join(root, file))
-'''
-
 file_types = ('.jpg', '.JPG', '.png')
 num = 0
 for root, subdirectories, files in os.walk('.'):
