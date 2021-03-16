@@ -97,6 +97,15 @@ This project aims to develop a CNN-based model to recognize Facial Expression of
     - python visualize.py
 - **Note:** Before training the network, the faces can also be cropped and resized to **96 x 96** pixels. Just repeat the steps in **How to use the scripts** and modify the resized images to **96 x 96** [link](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py#L80)
 
+<details><summary><b>CLICK ME</b> - Converting AffectNet dataset into YOLO format</summary>
+
+- Modify the input filename and image folder in process_od.py
+    - Change the filename affectnet/test.csv to affectnet/training.csv (or validation.csv) [link](https://github.com/chenghanc/Emotion2/blob/main/process_od.py#L14)
+    - Point the path **full_path_to_dataset = '...'** to **Manually_Annotated_Images** [link](https://github.com/chenghanc/Emotion2/blob/main/process_od.py#L55)
+    - Run process_od.py
+
+</details>
+
 ---
 
 ## References
