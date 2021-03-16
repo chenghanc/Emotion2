@@ -95,11 +95,7 @@ This project aims to develop a CNN-based model to recognize Facial Expression of
     - python plot_fer2013_confusion_matrix.py --model VGG19 --split PublicTest
 - Visualize for a test image
     - python visualize.py
-<<<<<<< HEAD
 - **Note:** Before training the network, the faces can also be cropped and resized to **96 x 96** pixels. Just repeat the steps in **How to use the scripts** and modify the resized images to **96 x 96** [link](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py#L80)
-=======
-- **Note:** Before training the network, the faces can also be cropped and resized to **128 x 128** pixels. Just repeat the steps in **How to use the scripts** and modify the resized images to **128 x 128** [link](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py#L80)
->>>>>>> d417905dbe61906ab813134d320567e6bfcf42ed
 
 ---
 
