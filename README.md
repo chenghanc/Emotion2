@@ -139,6 +139,14 @@ This project aims to develop models to recognize/detect Face Expression of human
 - We can filter out larger images based on file size
     - `find . -maxdepth 1 -size +385k \( -name \*.jpg \) | awk '{print "mv "$1" ../problematic"}' > problematic.sh`
 
+- Find number of files in a directory
+    - `find . -maxdepth 1 -type f -name "*.jpg" | wc -l`
+    - `find . -maxdepth 1 -type f -name "*.txt" | wc -l`
+
+- Move large number of files
+    - `find Manually_Annotated_Images -name '*.jpg' -exec mv {} anno-train \;`
+    - `find Manually_Annotated_Images -name '*.txt' -exec mv {} anno-train \;`
+
 - Create `train.txt`, `test.txt` and `emotion.names`
     - `ls -d "$PWD"/anno-train/*.jpg  > train.txt`
     - `ls -d "$PWD"/anno-valid/*.jpg  > test.txt`
