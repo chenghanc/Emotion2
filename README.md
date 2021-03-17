@@ -144,7 +144,7 @@ This project aims to develop models to recognize/detect Face Expression of human
     - `find . -maxdepth 1 -type f -name "*.txt" | wc -l`
 
 - Move large number of files
-    - `find Manually_Annotated_Images -name '*.jpg' -exec mv {} anno-train \;`
+    - `find Manually_Annotated_Images -maxdepth 1 -name '*.jpg' -exec mv {} anno-train \;`
     - `find Manually_Annotated_Images -name '*.txt' -exec mv {} anno-train \;`
 
 - Create `train.txt`, `test.txt` and `emotion.names`
