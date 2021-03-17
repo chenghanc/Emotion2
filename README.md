@@ -1,10 +1,26 @@
 # Facial Expression Recognition
 
+Implement Emotion Classification and Detection using Torch and Darknet
+
 ---
 
 ## Overview
 
-This project aims to develop a CNN-based model to recognize Facial Expression of human faces on any custom image or video
+### Functions
+
+This project aims to develop models to recognize/detect Face Expression of human faces on any custom image or video
+
+- Emotion Classification
+- Emotion Detection
+
+### Requirements
+
+- Python 3.8.5
+- Pytorch 1.6.0
+- h5py (Preprocessing)
+- sklearn (Plot confusion matrix)
+- OpenCV
+- Darknet (For training detector)
 
 ## Extract the AffectNet database
 
