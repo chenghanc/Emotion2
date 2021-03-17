@@ -136,7 +136,44 @@ This project aims to develop models to recognize/detect Face Expression of human
     - `find . -maxdepth 2 -size 0 \( -name \*.jpg -o -name \*.png -o -name \*.JPG \) | awk '{print "mv "$1" ../problematic"}' > problematic.sh`
     - `mv ./103/29a31ebf1567693f4644c8ba3476ca9a72ee07fe67a5860d98707a0a.jpg ../problematic`
 
+- We can filter out larger images based on file size
+    - `find . -maxdepth 1 -size +385k \( -name \*.jpg \) | awk '{print "mv "$1" ../problematic"}' > problematic.sh`
+
+- Create `train.txt`, `test.txt` and `emotion.names`
+    - `ls -d "$PWD"/anno-train/*.jpg  > train.txt`
+    - `ls -d "$PWD"/anno-valid/*.jpg  > test.txt`
+    - Prepare `emotion.names`
+    ```ini
+    Neutral
+    Happy
+    Sad
+    Surprise
+    Fear
+    Disgust
+    Anger
+    ```
+
+- Prepare `emotion.data`
+  ```ini
+  classes= 7
+  train  = train.txt
+  valid  = test.txt
+  names  = emotion.names
+  backup = backup
+  ```
+
 </details>
+
+- We can train and evaluate model by using this project [darknet](https://github.com/AlexeyAB/darknet)
+    - Big model
+    ```
+    $ ./darknet detector train emotion.data emotion.cfg yolov4.conv.137 -map -dont_show -mjpeg_port 8090 |tee -a trainRecord.txt
+    ```
+
+    - Tiny model
+    ```
+    $ ./darknet detector train emotion.data emotion-tiny.cfg yolov4-tiny.conv.29 -map -dont_show -mjpeg_port 8090 |tee -a trainRecord.txt
+    ```
 
 ---
 
