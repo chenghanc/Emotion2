@@ -120,7 +120,7 @@ This project aims to develop models to recognize/detect Face Expression of human
 - Modify the input filename and image folder in process_od.py
     - Change the filename affectnet/test.csv to affectnet/training.csv (or validation.csv) [link](https://github.com/chenghanc/Emotion2/blob/main/process_od.py#L14)
     - Point the path **full_path_to_dataset = '...'** to **Manually_Annotated_Images** [link](https://github.com/chenghanc/Emotion2/blob/main/process_od.py#L55)
-    - We can increase the size of BBox by enlarging width and height
+    - We can increase the size of BBox by enlarging width and height 
     - Run process_od.py
     - Add following code if necessary [link](https://github.com/chenghanc/Emotion2/blob/main/process_od.py#L81)
     ```python
