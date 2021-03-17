@@ -1,6 +1,6 @@
 # Facial Expression Recognition
 
-Implement Emotion Classification and Detection using Torch and Darknet
+Perform Emotion Classification and Detection using Torch and Darknet
 
 ---
 
@@ -10,13 +10,13 @@ Implement Emotion Classification and Detection using Torch and Darknet
 
 This project aims to develop models to recognize/detect Face Expression of human faces on any custom image or video
 
-- Emotion Classification
-- Emotion Detection
+- Emotion Classification (Torch)
+- Emotion Detection (Darknet)
 
 ### Requirements
 
 - Python 3.8.5
-- Pytorch 1.6.0
+- Pytorch 1.6.0 (For training classifier)
 - h5py (Preprocessing)
 - sklearn (Plot confusion matrix)
 - OpenCV
@@ -71,7 +71,7 @@ This project aims to develop models to recognize/detect Face Expression of human
 
 - We can visualize the images by running [preprocess_csv_affectnet.py](https://github.com/chenghanc/Emotion2/blob/main/preprocess_csv_affectnet.py), provided that input files are properly selected
 
-## Train and Evaluate model (VGG19)
+## Train and Evaluate model (Torch)
 
 - We can train and evaluate model by using this [project](https://github.com/chenghanc/Facial-Expression-Recognition.Pytorch)
 - Pre-processing **AffectNet** + **Fer2013** dataset
@@ -120,8 +120,21 @@ This project aims to develop models to recognize/detect Face Expression of human
 - Modify the input filename and image folder in process_od.py
     - Change the filename affectnet/test.csv to affectnet/training.csv (or validation.csv) [link](https://github.com/chenghanc/Emotion2/blob/main/process_od.py#L14)
     - Point the path **full_path_to_dataset = '...'** to **Manually_Annotated_Images** [link](https://github.com/chenghanc/Emotion2/blob/main/process_od.py#L55)
-    - We can increase the size of BBox by enlarging width and height 
+    - We can increase the size of BBox by enlarging width and height
     - Run process_od.py
+    - Add following code if necessary [link](https://github.com/chenghanc/Emotion2/blob/main/process_od.py#L81)
+    ```python
+    try:
+        h, w = image.shape[:2]
+    except AttributeError:
+        print('NoneType object has no attribute shape')
+        pass
+    ```
+
+- We can also check if any problematic data exists. Filter output based on file size
+    - `cd Manually_Annotated_Images`
+    - `find . -maxdepth 2 -size 0 \( -name \*.jpg -o -name \*.png -o -name \*.JPG \) | awk '{print "mv "$1" ../problematic"}' > problematic.sh`
+    - `mv ./103/29a31ebf1567693f4644c8ba3476ca9a72ee07fe67a5860d98707a0a.jpg ../problematic`
 
 </details>
 
