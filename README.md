@@ -10,7 +10,7 @@ Perform Emotion Classification and Detection using Torch and Darknet
 
 This project aims to develop models to recognize/detect Face Expression of human faces on any custom image or video
 
-- Emotion Classification (Torch)
+- Emotion Classification (Darknet and Torch)
 - Emotion Detection (Darknet)
 
 ### Requirements
@@ -20,7 +20,7 @@ This project aims to develop models to recognize/detect Face Expression of human
 - h5py (Preprocessing)
 - sklearn (Plot confusion matrix)
 - OpenCV
-- Darknet (For training detector)
+- Darknet (For training classifier and detector)
 
 ## Extract the AffectNet database
 
