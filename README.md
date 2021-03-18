@@ -115,7 +115,11 @@ This project aims to develop models to recognize/detect Face Expression of human
 
 ## Train and Evaluate model (Darknet)
 
-<details><summary><b>CLICK ME</b> - Converting AffectNet dataset into YOLO format</summary>
+<details><summary><b>CLICK ME</b> - Converting AffectNet dataset into YOLO format (For training classifier) </summary>
+
+</details>
+
+<details><summary><b>CLICK ME</b> - Converting AffectNet dataset into YOLO format (For training detector)</summary>
 
 - Modify the input filename and image folder in process_od.py
     - Change the filename affectnet/test.csv to affectnet/training.csv (or validation.csv) [link](https://github.com/chenghanc/Emotion2/blob/main/process_od.py#L14)
@@ -148,8 +152,8 @@ This project aims to develop models to recognize/detect Face Expression of human
     - `find Manually_Annotated_Images -name '*.txt' -exec mv {} anno-train \;`
 
 - Create `train.txt`, `test.txt` and `emotion.names`
-    - `ls -d "$PWD"/anno-train/*.jpg  > train.txt`
-    - `ls -d "$PWD"/anno-valid/*.jpg  > test.txt`
+    - `ls -d "$PWD"/anno-train/*.jpg  > train.txt` (`find "$PWD"/anno-train -name \*.jpg > train.txt`)
+    - `ls -d "$PWD"/anno-valid/*.jpg  > test.txt`  (`find "$PWD"/anno-valid -name \*.jpg > test.txt`)
     - Prepare `emotion.names`
     ```ini
     Neutral
@@ -169,6 +173,8 @@ This project aims to develop models to recognize/detect Face Expression of human
   names  = emotion.names
   backup = backup
   ```
+
+- The training dataset consists of **283,901** examples. The validation dataset consists of **3,500** examples
 
 </details>
 
