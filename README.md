@@ -117,6 +117,27 @@ This project aims to develop models to recognize/detect Face Expression of human
 
 <details><summary><b>CLICK ME</b> - Converting AffectNet dataset into YOLO format (For training classifier) </summary>
 
+- Modify the input filename and image folder in process_classifier.py
+    - Change the filename affectnet/test.csv to affectnet/training.csv (or validation.csv)
+    - Point the path **full_path_to_dataset = '...'** to **Manually_Annotated_Images**
+    - Run process_classifier.py
+
+- Make A Dataset Config File
+    - labels = ...: where to find the list of possible classes
+```ini
+classes=7
+train  = train.list
+valid  = test.list
+labels = labels.txt
+backup = backup
+top=2
+```
+
+- References: Please visit following links for more information
+[Train Classifier on ImageNet (ILSVRC2012)](https://github.com/AlexeyAB/darknet/wiki/Train-Classifier-on-ImageNet-(ILSVRC2012))
+[Train a Classifier on CIFAR-10](https://pjreddie.com/darknet/train-cifar/)
+[ImageNet Classification](https://pjreddie.com/darknet/imagenet/)
+
 </details>
 
 <details><summary><b>CLICK ME</b> - Converting AffectNet dataset into YOLO format (For training detector)</summary>
@@ -178,7 +199,7 @@ This project aims to develop models to recognize/detect Face Expression of human
 
 </details>
 
-- We can train and evaluate model by using this project [darknet](https://github.com/AlexeyAB/darknet)
+- We can train and evaluate **detector** by using this project [darknet](https://github.com/AlexeyAB/darknet)
     - Big model
     ```
     $ ./darknet detector train emotion.data emotion.cfg yolov4.conv.137 -map -dont_show -mjpeg_port 8090 |tee -a trainRecord.txt
