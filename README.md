@@ -113,7 +113,7 @@ This project aims to develop models to recognize/detect Face Expression of human
     - python visualize.py
 - **Note:** Before training the network, the faces can also be cropped and resized to **96 x 96** pixels. Just repeat the steps in **How to use the scripts** and modify the resized images to **96 x 96** [link](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py#L80)
 
-## Train and Evaluate model (Darknet)
+## Train and Evaluate model (Darknet) - Data Preparation
 
 <details><summary><b>CLICK ME</b> - Converting AffectNet dataset into YOLO format (For training classifier) </summary>
 
@@ -122,16 +122,25 @@ This project aims to develop models to recognize/detect Face Expression of human
     - Point the path **full_path_to_dataset = '...'** to **Manually_Annotated_Images**
     - Run process_classifier.py
 
-- Make A Dataset Config File
+- Make A Dataset Config File (`emotion-classifier.data`)
+    - classes=7   : the dataset has 7 different classes
+    - train  = ...: where to find the list of training files
+    - valid  = ...: where to find the list of validation files
     - labels = ...: where to find the list of possible classes
+    - backup = ...: where to save backup weight files during training
+    - top    = 5  : calculate top-n accuracy at test time (in addition to top-1)
 ```ini
 classes=7
 train  = train.list
 valid  = test.list
 labels = labels.txt
 backup = backup
-top=2
+top=5
 ```
+
+- Prepare `train.list`, `test.list` and `labels.txt` the same way as detector (described in next section)
+
+- The training dataset consists of **283,901** examples. The validation dataset consists of **3,500** examples
 
 - References: Please visit following links for more information
 [Train Classifier on ImageNet (ILSVRC2012)](https://github.com/AlexeyAB/darknet/wiki/Train-Classifier-on-ImageNet-(ILSVRC2012))
@@ -199,10 +208,60 @@ top=2
 
 </details>
 
+<details><summary><b>CLICK ME</b> - Settings of parameters used for training detector</summary>
+
+- Batch size: 64 (batch=64)
+- Total training data: 283,901
+- Iterations: 400,000 (max_batches = 400,000)
+- 1 epoch = 283901 / 64 = 4436 iterations
+- 400000 x 64 / 283901 = 90 epochs
+
+| Dataset          | Parameters                        | Values                                        |
+|------------------|:---------------------------------:|:---------------------------------------------:|
+| AffectNet        | Network resolutions               | 256 x 256 (608 x 608)                         |
+|                  | Data augmentation                 | saturation, exposure, hue, mosaic, jitter etc |
+|                  | Batch size                        | batch=64                                      |
+|                  | Optimizator                       | momentum=0.9                                  |
+|                  | Optimizator                       | decay=0.0005                                  |
+|                  | Optimizator                       | learning_rate=0.00261                         |
+|                  | Optimizator                       | burn_in=1000                                  |
+|                  | Optimizator                       | max_batches = 400,000                         |
+|                  | Number of epochs	                 | 90 - 250                                      |
+|                  | Policy for changing learning rate | policy=steps                                  |
+
+</details>
+
+## Train and Evaluate model (Darknet)
+
+- We can train and evaluate **classifier** by using this project [darknet](https://github.com/AlexeyAB/darknet)
+    - Training
+    ```
+    ./darknet classifier train emotion-classifier.data csdarknet53-omega.cfg -topk
+    ```
+
+    - Classifictation - Predict
+    ```
+    ./darknet classifier predict emotion-classifier.data csdarknet53-omega.cfg csdarknet53-omega_last.weights test.jpg
+    ```
+
+    - Classifictation - Check accuracy Top1 / Top5
+    ```
+    ./darknet classifier valid emotion-classifier.data csdarknet53-omega.cfg csdarknet53-omega_last.weights
+    ```
+
 - We can train and evaluate **detector** by using this project [darknet](https://github.com/AlexeyAB/darknet)
     - Big model
     ```
     $ ./darknet detector train emotion.data emotion.cfg yolov4.conv.137 -map -dont_show -mjpeg_port 8090 |tee -a trainRecord.txt
+    ```
+
+    - Big model - Alternatively, we can use pre-trained weights from Classifictation as a starting point (Use the first 105 layers from the pre-trained weights on AffectNet), which can be obtained by running
+    ```
+    $ ./darknet partial csdarknet53-omega.cfg csdarknet53-omega_final.weights csdarknet53-omega.conv.105 105
+    ```
+    - Then
+    ```
+    $ ./darknet detector train emotion.data emotion.cfg csdarknet53-omega.conv.105 -map -dont_show -mjpeg_port 8090 |tee -a trainRecord.txt
     ```
 
     - Tiny model
