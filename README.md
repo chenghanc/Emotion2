@@ -269,6 +269,29 @@ top=5
     $ ./darknet detector train emotion.data emotion-tiny.cfg yolov4-tiny.conv.29 -map -dont_show -mjpeg_port 8090 |tee -a trainRecord.txt
     ```
 
+## Train and Evaluate model (Darknet) Tiny V3
+
+- We can first train a **classifier**
+```
+$ ./darknet classifier train emotion-classifier.data darknet.cfg -topk -dont_show -mjpeg_port 8090 |tee -a log.txt
+```
+
+- The first 11 layers from the pre-trained weights on AffectNet
+```
+$ ./darknet partial darknet.cfg darknet_final.weights darknet.conv.11 11
+```
+
+- Then we can train a **detector**
+```
+$ ./darknet detector train emotion.data v3-tiny.cfg darknet.conv.11     -map -dont_show -mjpeg_port 8090 |tee -a log.txt
+
+or
+
+$ ./darknet detector train emotion.data v3-tiny.cfg yolov3-tiny.conv.11 -map -dont_show -mjpeg_port 8090 |tee -a log.txt
+```
+
+-
+
 ---
 
 ## References
