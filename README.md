@@ -290,6 +290,26 @@ or
 $ ./darknet detector train emotion.data v3-tiny.cfg yolov3-tiny.conv.11 -map -dont_show -mjpeg_port 8090 |tee -a log.txt
 ```
 
+<details><summary><b>CLICK ME</b> - Comparisons of Models (Tiny Version Detectors)</summary>
+
+- Classifier
+    - Network resolutions: 224 x 224
+    - Iterations: 400,200
+    - Top-1 Accuracy: 58.1%
+    - Top-5 Accuracy: 97.5%
+
+- Detector
+    - Iterations: 400,200 (90 epochs)
+
+| Models           | mAP (%) | P    | R    | F1   | Network resolutions | Pre-trained weights from Classifictation               |
+|------------------|:-------:|:----:|:----:|:----:|:-------------------:|--------------------------------------------------------|
+| v3-tiny          | 67.22   | 0.57 | 0.61 | 0.59 | 256 x 256           | Train Classifier on **AffectNet** (darknet.conv.11)    |
+| v3-tiny          | 66.96   | 0.56 | 0.60 | 0.58 | 256 x 256           | Train Classifier on **ImageNet** (yolov3-tiny.conv.11) |
+| v4-tiny          | --      | --   | --   | --   | --                  | Train Classifier on **AffectNet** (NA)                 |
+| v4-tiny          | 68.22   | 0.57 | 0.61 | 0.59 | 256 x 256           | Train Classifier on **ImageNet** (yolov4-tiny.conv.29) |
+
+</details>
+
 ---
 
 ## References
