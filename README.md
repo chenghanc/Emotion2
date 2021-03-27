@@ -113,6 +113,12 @@ This project aims to develop models to recognize/detect Face Expression of human
     - python visualize.py
 - **Note:** Before training the network, the faces can also be cropped and resized to **96 x 96** pixels. Just repeat the steps in **How to use the scripts** and modify the resized images to **96 x 96** [link](https://github.com/chenghanc/Emotion2/blob/main/process_csv.py#L80)
 
+<details><summary><b>CLICK ME</b> - Model Accuracy (AffectNet) </summary>
+
+- Model VGG19
+
+</details>
+
 ## Train and Evaluate model (Darknet) - Data Preparation
 
 <details><summary><b>CLICK ME</b> - Converting AffectNet dataset into YOLO format (For training classifier) </summary>
